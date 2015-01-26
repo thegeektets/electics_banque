@@ -54,17 +54,35 @@
         </div>
 			</div>
 		</div>
-		
-	 <div class="container-fluid" id="pcont">
-      <div class="cl-mcont">
-     <div class="row">
-        <div class="col-md-12">
-          <h3 class="widget-title">Apply Fellowship</h3>
-                <div class="row">
 
-
-            
-          <form role="form" class="form-horizontal" enctype ='multipart/form-data' <?php echo form_open('student/applyfellowship/'.$this->session->userdata('vacancyid')); ?>
+ <div class="container-fluid" id="pcont">
+    <div class="page-head">
+      <h2>Apply Fellowship</h2>
+     
+    </div>
+    <div class="cl-mcont">    
+    <div class="row wizard-row">
+      <div class="col-md-12 fuelux">
+        <div class="block-wizard">
+          <div id="wizard1" class="wizard wizard-ux">
+            <ul class="steps">
+              <li data-target="#step1" class="active">Step 1<span class="chevron"></span></li>
+              <li data-target="#step2">Step 2<span class="chevron"></span></li>
+              <li data-target="#step3">Step 3<span class="chevron"></span></li>
+              <li data-target="#step4">Step 4<span class="chevron"></span></li>
+              <li data-target="#step5">Step 5<span class="chevron"></span></li>
+    
+            </ul>
+            <div class="actions">
+              <button type="button" class="btn btn-xs btn-prev btn-default"> <i class="icon-arrow-left"></i>Prev</button>
+              <button type="button" class="btn btn-xs btn-next btn-default" data-last="Finish">Next<i class="icon-arrow-right"></i></button>
+            </div>
+          </div>
+          <div class="step-content">
+            <form class="form-horizontal group-border-dashed" action="#" data-parsley-namespace="data-parsley-" data-parsley-validate novalidate> 
+              <div class="step-pane active" id="step1">
+                                
+          <form role="form" class="form-horizontal" enctype ='multipart/form-data' <?php echo form_open('student/editstudentdetails/'.$this->session->userdata('username'); ?>
 
                      <?php if(strlen($success['0'])>0){
                 ?>
@@ -153,7 +171,7 @@
                        <div class="form-group">
                     <label class="col-sm-3 control-label" for="student_nextofkin">Applicants' Next of Kin</label>
                     <div class="col-sm-5">
-                      <input type="text" placeholder="Applicants' Next of Kin " id="student_nextofkin" value="<?php  echo set_value('student_nextofkin'); ?>"
+                      <input type="text" placeholder="Applicants' Next of Kin " id="student_nextofkin" value="<?php  echo $student['0']['student_nextofkin']; ?>"
                       name="student_nextofkin"  required="true" class="form-control">
                              <div style="color:#DF0D8A" id="student_nextofkin-error"> <?php echo form_error('student_nextofkin'); ?></div>
         
@@ -162,7 +180,7 @@
                        <div class="form-group">
                     <label class="col-sm-3 control-label" for="student_nextofkincontact">Next of Kin Contacts</label>
                     <div class="col-sm-5">
-                      <input type="text" placeholder="Next of Kin Contacts" id="student_nextofkincontact"  value="<?php  echo set_value('student_nextofkincontact'); ?>"
+                      <input type="text" placeholder="Next of Kin Contacts" id="student_nextofkincontact"  value="<?php  echo $student['0']['student_nextofkincontact']; ?>"
                       name="student_nextofkincontact"  required="true" class="form-control">
                              <div style="color:#DF0D8A" id="student_nextofkincontact-error"> <?php echo form_error('student_nextofkincontact'); ?></div>
         
@@ -177,8 +195,17 @@
         
                     </div>
                        </div>
+                        <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <button class="btn btn-default">Cancel</button>
+                    <button class="btn btn-primary" type="submit">Submit &nbsp;<i class="fa fa-caret-right"></i></button>
+                  </div>
 
-               <div class="form-group">
+                  </form>
+                </div>        
+              </div>
+              <div class="step-pane" id="step2">
+                        <div class="form-group">
                 
                 <div class="col-sm-10">
                     
@@ -246,7 +273,37 @@
                   </div>
                 </div>
               </div>
-                  <div class="form-group">
+                               <div class="form-group">
+                    <label class="col-sm-3 control-label" for="relevantinformation">Any Other Relavant Information</label>
+                    <div class="col-sm-5">
+                      <textarea  name ="relevantinformation" id="relevantinformation" class="form-control">
+                      <?php echo set_value('relevantinformation'); ?>
+                        
+                      </textarea> 
+                           <div style="color:#DF0D8A" id="relevantinformation-error"> <?php echo form_error('relevantinformation'); ?></div>
+            
+                    </div>
+                   
+                  </div>
+                  
+                                  <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <button class="btn btn-default">Cancel</button>
+                    <button data-wizard="#wizard1" class="btn btn-primary wizard-next">Next Step <i class="fa fa-caret-right"></i></button>
+                  </div>
+                </div>     
+    
+
+
+              </div>
+              <div class="step-pane" id="step3">
+                          <div class="col-sm-10">
+                    
+                <h4  style="margin-left:50px;color:#7c3886;"class="widget-title">Applicants' Cover Letter </h4>
+
+                </div>
+              
+                                    <div class="form-group">
                     <label class="col-sm-3 control-label" for="applicant_coverletter">Applicants' Cover Letter</label>
                     <div class="col-sm-9">
                    
@@ -259,7 +316,20 @@
 
                 <div  style="color:#DF0D8A"  id="applicant_coverletter-error"> <?php echo form_error('applicant_coverletter'); ?></div>
                     </div>
+                  </div> 
+                                  <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <button class="btn btn-default">Cancel</button>
+                    <button data-wizard="#wizard1" class="btn btn-primary wizard-next">Next Step <i class="fa fa-caret-right"></i></button>
                   </div>
+                </div>     
+              </div>
+              <div class="step-pane" id="step4">
+                                                              <div class="col-sm-10">
+                    
+                <h4  style="margin-left:50px;color:#7c3886;"class="widget-title">Applicants' Curriculum Vitae</h4>
+
+                </div>
                        <div class="form-group">
                     <label class="col-sm-3 control-label" for="position_enddate">Applicants' Curriculum Vitae</label>
                     <div class="col-sm-9">
@@ -273,8 +343,22 @@
 
                 <div  style="color:#DF0D8A"  id="applicant_curriculumvitae-error"> <?php echo form_error('applicant_curriculumvitae'); ?></div>
                     </div>
+                  </div> 
+                                  <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <button class="btn btn-default">Cancel</button>
+                    <button data-wizard="#wizard1" class="btn btn-primary wizard-next">Next Step <i class="fa fa-caret-right"></i></button>
                   </div>
-                 <div class="form-group">
+                </div>     
+              </div>
+            
+             <div class="step-pane" id="step5">
+                                         <div class="col-sm-10">
+                    
+                <h4  style="margin-left:50px;color:#7c3886;"class="widget-title">Applicants' Introduction Letter </h4>
+
+                </div>
+                <div class="form-group">
                     <label class="col-sm-3 control-label" for="introductionletter">Applicants' Introduction Letter</label>
                     <div class="col-sm-9">
                    
@@ -288,30 +372,19 @@
                 <div  style="color:#DF0D8A"  id="introductionletter-error"> <?php echo form_error('introductionletter'); ?></div>
                     </div>
                   </div>
-               
-                  <div class="form-group">
-                    <label class="col-sm-3 control-label" for="relevantinformation">Any Other Relavant Information</label>
-                    <div class="col-sm-5">
-                      <textarea  name ="relevantinformation" id="relevantinformation" class="form-control">
-                      <?php echo set_value('relevantinformation'); ?>
-                        
-                      </textarea> 
-                           <div style="color:#DF0D8A" id="relevantinformation-error"> <?php echo form_error('relevantinformation'); ?></div>
-            
-                    </div>
-                   
+                                  <div class="form-group">
+                  <div class="col-sm-offset-2 col-sm-10">
+                    <button class="btn btn-default">Cancel</button>
+                    <button  style="padding-left:20px;"data-wizard="#wizard1" class="btn btn-primary wizard-next">Finish <i class="fa fa-file"></i></button>
                   </div>
-                  
-                  <div class="form-group">
-                    <div class="col-sm-offset-3 col-sm-9">
-                      <button class="btn btn-primary" type="submit">Apply Fellowship</button>
-                      
-                    </div>
-                  </div>
-         </form>
-                </div>
-              </div>
-              </div>
+                </div>     
+             </div>
+           
+          </div>
+        </div>
+
+  
+
                 </body>
 
 </html>

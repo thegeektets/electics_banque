@@ -133,7 +133,10 @@ class student_model extends CI_Model {
     }
        public function apply_fellowship($vacancyid) {
       $this->load->library('session');
-    
+      $this->load->helper('url');
+   
+      $upload_data = $this->upload->data(); 
+ 
         $application_status ="pending";
         $user_id =$this->get_userid($this->session->userdata('username'));
         $student_name = $this->input->post("student_name");
@@ -155,6 +158,16 @@ class student_model extends CI_Model {
         $research_title = $this->input->post("research_title");
         $sponsor = $this->input->post("sponsor");
         $sponsor_contact = $this->input->post("sponsor_contact");
+
+          $applicant_coverletter =   $upload_data['file_name'];
+          $applicant_curriculumvitae =   $upload_data['file_name'];
+          $introductionletter =   $upload_data['file_name'];
+
+          $uapplicant_coverletter = base_url("assets/coverletter/".$applicant_coverletter); 
+          $uapplicant_curriculumvitae = base_url("assets/cv/".$applicant_curriculumvitae); 
+          $uintroductionletter = base_url("assets/introductionletter/".$introductionletter); 
+     
+    
                 
 
             $sql = "UPDATE student_details set student_name ='$student_name',
@@ -167,13 +180,15 @@ class student_model extends CI_Model {
             $this->db->query($sql);
 
            $sqll = "INSERT INTO fellowship_application (vacancy_id,applicant_skills,relevantinformation,
-            applicant_requirements,application_status,user_id,research_title,sponsor,sponsor_contact) " .
+            applicant_requirements,application_status,user_id,research_title,sponsor,sponsor_contact,applicant_coverletter,curriculumvitae,introductionletter) " .
             "VALUES (" . $this->db->escape($vacancyid) . ",".$this->db->escape($applicant_skills) .",".$this->db->escape($relevantinformation).
               ",".$this->db->escape($internshiprequirements) 
-              .",".$this->db->escape($application_status).",".$this->db->escape($user_id).",".$this->db->escape($research_title).",".$this->db->escape($sponsor).",".$this->db->escape($sponsor_contact).");";
+              .",".$this->db->escape($application_status).",".$this->db->escape($user_id).",".$this->db->escape($research_title).",".$this->db->escape($sponsor).","
+              .$this->db->escape($sponsor_contact).",".$this->db->escape($applicant_coverletter).",".$this->db->escape($applicant_curriculumvitae).",".$this->db->escape($introductionletter).");";
             $this->db->query($sqll);
 
     }
+
 
    public function changeuseravatar() {
      $upload_data = $this->upload->data(); 
@@ -190,7 +205,7 @@ class student_model extends CI_Model {
         $this->db->query($sql);
       }
 
-    function editdetails(){
+    public function editdetails(){
         $this->load->library('session');
         $user =$this->session->userdata('username');
             $username = $this->input->post("username");

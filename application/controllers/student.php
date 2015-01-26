@@ -102,7 +102,9 @@ class Student extends CI_Controller {
      echo "1" ;
     }
 }
-
+  function editstudentdetails($username){
+    
+  }
 
   function applyinternship($vacancyid){
   
@@ -218,6 +220,7 @@ class Student extends CI_Controller {
     $this->load->view('includes/menu' , $data);
     $this->load->view('student/apply_fellowship',$data);
     $this->load->view('includes/footer');
+    $this->load->view('includes/wizard');
      }
      else
      {
@@ -247,10 +250,13 @@ class Student extends CI_Controller {
     $this->load->view('includes/menu' , $data);
     $this->load->view('student/apply_fellowship',$data);
     $this->load->view('includes/footer');
+    $this->load->view('includes/wizard');
+  
     
     }
     else {
      $data['success']= ("Application has been sent to CDU for processing you will be notified on the progress") ;
+     $this->uploadcoverletter();
      $this->student_model->apply_fellowship($this->session->userdata('vacancyid'));
     
   
@@ -258,6 +264,8 @@ class Student extends CI_Controller {
     $this->load->view('includes/menu' , $data);
     $this->load->view('student/apply_fellowship',$data);
     $this->load->view('includes/footer');
+    $this->load->view('includes/wizard');
+  
     
     }
 
@@ -308,6 +316,69 @@ class Student extends CI_Controller {
       $this->load->view('includes/footer');
       $this->load->view('includes/datatables');
   }
+
+  //change both avatars or one of them
+    function changeavatars(){
+       $this->load->library('session');
+       
+       $this->load->helper(array('form', 'url'));
+
+       $config['upload_path'] = './assets/img/users/';
+       $config['allowed_types'] = 'gif|jpg|png';
+       $config['max_size'] = '10000';
+       $config['max_width']  = '10240';
+       $config['max_height']  = '7680';
+       $config['overwrite'] = FALSE; 
+       $this->load->library('upload', $config);
+       $this->upload->initialize($config);
+       $useravatar = 'useravatar' ;
+
+         if($this->upload->do_upload($useravatar)){
+             $this->load->library('session');
+         //   $error = $this->upload->display_errors();
+            $this->student_model->changeuseravatar();
+           
+            echo "1";
+      }
+      else{
+             $error = $this->upload->display_errors();
+              echo $error;
+               echo "0";
+      }
+
+    }
+
+      //upload cover letter
+    function uploadcoverletter(){
+       $this->load->library('session');
+       
+       $this->load->helper(array('form', 'url'));
+
+       $config['upload_path'] = './assets/coverletter/';
+       $config['allowed_types'] = 'docx|pdf|doc|odt';
+       $config['max_size'] = '10000';
+       $config['overwrite'] = FALSE; 
+       $this->load->library('upload', $config);
+       $this->upload->initialize($config);
+      $applicant_coverletter = 'applicant_coverletter' ;
+
+         if($this->upload->do_upload($applicant_coverletter)){
+             $this->load->library('session');
+         //   $error = $this->upload->display_errors();
+         //   $this->student_model->changeuseravatar();
+           
+            echo "1";
+      }
+      else{
+             $error = $this->upload->display_errors();
+              echo $error;
+               echo "0";
+      }
+
+    }
+
+
+
 
 
 

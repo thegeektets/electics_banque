@@ -33,6 +33,14 @@ $this->load->helper('url');
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url('/assets/js/bootstrap.slider/css/slider.css')?>" />
 	<link rel="stylesheet" type="text/css" href="<?php echo base_url('/assets/js/intro.js/introjs.css')?>" />
   <link href="<?php echo base_url('/assets/css/style.css')?>" rel="stylesheet" />
+  <link href="<?php echo base_url('/assets/js/fuelux/css/fuelux.css')?>" rel="stylesheet">
+  <link href="<?php echo base_url('/assets/js/fuelux/css/fuelux-responsive.min.css')?>" rel="stylesheet">
+  <link rel="stylesheet" href="<?php echo base_url('/assets/css/pygments.css')?>">
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url('/assets/js/jquery.nanoscroller/nanoscroller.css')?>" />
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url('/assets/js/bootstrap.switch/bootstrap-switch.css')?>" />
+   
+
+
 <title>Intern Management and Capacity Building Information System</title>
   
 </head>
