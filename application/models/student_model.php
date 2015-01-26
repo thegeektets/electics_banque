@@ -72,7 +72,27 @@ class student_model extends CI_Model {
           return null;
         }
    }
+      public function check_fapplication($vacancyid){
+        $this->load->library('session');
+   
+        $user_id =$this->get_userid($this->session->userdata('username'));
+    
 
+    $query = $this->db->query("select * from fellowship_application where user_id = '".$user_id."' and vacancy_id = '".$vacancyid."'");
+    $query->result();
+
+        if($query->result() != null){
+
+          foreach ($query->result() as $row)
+        {
+            return $row->user_id;
+        }  
+        
+        }
+        else{
+          return null;
+        }
+   }
    public function apply_internship($vacancyid) {
       $this->load->library('session');
     
@@ -108,6 +128,49 @@ class student_model extends CI_Model {
            $sqll = "INSERT INTO internship_application (vacancy_id,applicant_skills,relevantinformation,applicant_requirements,application_status,user_id) " .
             "VALUES (" . $this->db->escape($vacancyid) . ",".$this->db->escape($applicant_skills) .",".$this->db->escape($relevantinformation).",".$this->db->escape($internshiprequirements) 
               .",".$this->db->escape($application_status).",".$this->db->escape($user_id).");";
+            $this->db->query($sqll);
+
+    }
+       public function apply_fellowship($vacancyid) {
+      $this->load->library('session');
+    
+        $application_status ="pending";
+        $user_id =$this->get_userid($this->session->userdata('username'));
+        $student_name = $this->input->post("student_name");
+        $student_gender = $this->input->post("student_gender");
+        $student_dob = $this->input->post("student_dob");
+        $student_email = $this->input->post("student_email");
+        $student_phone = $this->input->post("student_phone");
+        $student_nationality = $this->input->post("student_nationality");
+        $student_nextofkin = $this->input->post("student_nextofkin");
+        $student_nextofkincontact = $this->input->post("student_nextofkincontact");
+        $student_institution = $this->input->post("student_institution");
+        $student_fieldofstudy = $this->input->post("student_fieldofstudy");
+        $applicant_skills = $this->input->post("applicant_skills");
+        $applicant_coverletter = $this->input->post("applicant_coverletter");
+        $applicant_curriulumvitae = $this->input->post("applicant_curriculumvitae");
+        $introductionletter = $this->input->post("introductionletter");
+        $relevantinformation = $this->input->post("relevantinformation");
+        $internshiprequirements = $this->input->post("applicant_requirements");
+        $research_title = $this->input->post("research_title");
+        $sponsor = $this->input->post("sponsor");
+        $sponsor_contact = $this->input->post("sponsor_contact");
+                
+
+            $sql = "UPDATE student_details set student_name ='$student_name',
+            student_gender ='$student_gender' ,student_dob ='$student_dob',
+            student_email='$student_email',student_phone='$student_phone',
+            student_nationality='$student_nationality',student_nextofkin='$student_nextofkin',
+            student_nextofkincontact='$student_nextofkincontact',student_institution='$student_institution',
+            student_fieldofstudy='$student_fieldofstudy' WHERE user_id =".$user_id."";
+
+            $this->db->query($sql);
+
+           $sqll = "INSERT INTO fellowship_application (vacancy_id,applicant_skills,relevantinformation,
+            applicant_requirements,application_status,user_id,research_title,sponsor,sponsor_contact) " .
+            "VALUES (" . $this->db->escape($vacancyid) . ",".$this->db->escape($applicant_skills) .",".$this->db->escape($relevantinformation).
+              ",".$this->db->escape($internshiprequirements) 
+              .",".$this->db->escape($application_status).",".$this->db->escape($user_id).",".$this->db->escape($research_title).",".$this->db->escape($sponsor).",".$this->db->escape($sponsor_contact).");";
             $this->db->query($sqll);
 
     }

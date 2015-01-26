@@ -18,7 +18,7 @@
             <ul class="cl-vnavigation">
              <li><a href="#"><i class="fa fa-home"></i><span>Profile</span></a>
                 <ul class="sub-menu">
-                  <li class="active"><a href="<?php echo base_url("index.php/student");?>">My Profile</a></li>
+                  <li><a href="<?php echo base_url("index.php/student");?>">My Profile</a></li>
                 </ul>
               </li>
               <li><a href="#"><i class="fa fa-smile-o"></i><span>Applications</span></a>
@@ -27,10 +27,10 @@
                  </ul>
               </li>
               <li><a href="#"><i class="fa fa-list-alt"></i><span>Vacancies</span></a>
-                <ul class="sub-menu">
-                  <li><a href="form-elements.html">Internship Vacancies</a></li>
-                  <li><a href="form-validation.html">Fellowship Vacancies</a></li>
-                  </ul>
+                     <ul class="sub-menu">
+                           <li ><a href="<?php echo base_url('index.php/student/internshipvacancies')?>">Internship Vacancies</a></li>
+                  <li class="active"><a href="<?php echo base_url('index.php/student/fellowshipvacancies')?>">Fellowship Vacancies</a></li>
+                 </ul>
               </li>
               <li><a href="#"><i class="fa fa-table"></i><span>Projects</span></a>
                 <ul class="sub-menu">
@@ -39,7 +39,7 @@
                 </ul>
               </li>              
 
-                   <li><a href="#"><i class="fa fa-file"></i><span>Reports</span></a>
+                   <li><a href="#"><i class="fa fa-file"></i><span>Reports</span></a> 
                 <ul class="sub-menu">
                   <li><a href="pages-blank.html">Projects</a></li>
                   <li><a href="pages-blank-header.html">Attachment</a></li>
@@ -55,324 +55,263 @@
 			</div>
 		</div>
 		
-		<div class="container-fluid" id="pcont">
-		  <div class="cl-mcont">
-	
-<div class="row">
-        <div class="col-sm-12">
-          
-          <div class="tab-container">
-            <ul class="nav nav-tabs">
-              <li class="active"><a data-toggle="tab" href="#home">Student Details</a></li>
-              <li><a data-toggle="tab" href="#avatar">User Avatar</a></li>
-              <li><a data-toggle="tab" href="#settings">Account Settings</a></li>
-            </ul>
-            <div class="tab-content">
-              <div id="home" class="tab-pane active cont">
-                <form onsubmit="return editprofile()" id = "editprofile">
-                <div id="message">
-                  
+	 <div class="container-fluid" id="pcont">
+      <div class="cl-mcont">
+     <div class="row">
+        <div class="col-md-12">
+          <h3 class="widget-title">Apply Fellowship</h3>
+                <div class="row">
+
+
+            
+          <form role="form" class="form-horizontal" enctype ='multipart/form-data' <?php echo form_open('student/applyfellowship/'.$this->session->userdata('vacancyid')); ?>
+
+                     <?php if(strlen($success['0'])>0){
+                ?>
+
+               <div class="alert alert-success alert-white rounded">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <div class="icon"><i class="fa fa-check"></i></div>
+                
+                <strong style="margin-left:50px"> &nbsp;&nbsp;Success!</strong><?php echo $success; ?>
+               </div>
+
+               <?php
+                }
+                ?>
+               <div class="form-group">
+                
+                <div class="col-sm-10">
+                    
+                <h4  style="margin-left:50px;color:#7c3886;"class="widget-title"> Student Details </h4>
+
                 </div>
-                <table class="no-border no-strip information">
-                  <tbody class="no-border-x no-border-y">
-                      <tr>
-                      <td style="width:20%;" class="category"><strong>PROFILE</strong></td>
-                      <td>
-                        <table class="no-border no-strip skills">
-                          <tbody class="no-border-x no-border-y">
-                            <tr><td style="width:20%;"><b>Username</b></td><td><span class = "detail"><?php echo $profile[0]['username'] ;
-                            if($profile[0]['username'] == null){echo "username" ;} ?></span>
-                            <input type="text" class="detail hidden" name = "username" value ="<?php echo $profile[0]['username'] ?>"></td></tr>
-                            <tr><td style="width:20%;"><b>Fullname</b></td><td><span class = "detail"><?php echo $student[0]['student_name'] ;
-                            if($student[0]['student_name'] == null){echo "Fullname" ;} ?></span>
-                            <input type="text" class="detail hidden" name = "name" value ="<?php echo $student[0]['student_name'] ?>"></td></tr>
-                            <tr><td style="width:20%;"><b>Gender</b></td><td><span class = "detail"><?php echo $student[0]['student_gender']  ;
-                             if($student[0]['student_gender'] == null){echo "sex" ;}?></span>
-                            <input type="text" class="detail hidden" name = "gender" value ="<?php echo $profile[0]['student_gender'] ?>"></td></tr>
-                            <tr><td style="width:20%;"><b>DOB</b></td><td><span class = "detail"><?php echo $student[0]['student_dob']  ;
-                             if($student[0]['student_dob'] == null){echo "0000-00-00" ;}?></span>
-                            <input type="text" class="detail hidden" name = "DOB" value ="<?php echo $student[0]['student_dob'] ?>"></td></tr>
-                           
-                           </tbody>
-                        </table>
-                      </td>
-                    </tr>
+                </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label" for="student_name">Applicants' Name</label>
+                    <div class="col-sm-5">
+                      <input type="text" placeholder="Applicants' Name" id="student_name" value="<?php  echo $student['0']['student_name'];?>"
+                      name="student_name"  required="true" class="form-control">
+                             <div style="color:#DF0D8A" id="student_name-error"> <?php echo form_error('student_name'); ?></div>
+        
+                    </div>
+                       </div>
+                      <div class="form-group">
+                    <label class="col-sm-3 control-label" for="student_gender">Applicants' Gender</label>
+                    <div class="col-sm-5">
+                    <select class = "form-control" name="student_gender" id="student_gender" selected="<?php echo $student['0']['student_gender']?>">
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                    </select>
+                    <div style="color:#DF0D8A" id="student_gender-error"> <?php echo form_error('student_gender'); ?></div>
+        
+                    </div>
+                       </div>
+                                 <div class="form-group">
+                    <label class="col-sm-3 control-label" for="student_dob"> Applicants' DOB</label>
+                    <div class="col-sm-9">
+                      <div class="input-group date datetime col-md-5 col-xs-7" data-min-view="2" data-date-format="yyyy-mm-dd">
+                    <input class="form-control"   value="<?php echo $student['0']['student_dob'] ?>"  size="16" name="student_dob"type="text" value="" >
+                    <span class="input-group-addon btn btn-primary"><span class="glyphicon glyphicon-th"></span></span>
+                  </div>
+                   <div style="color:#DF0D8A" id="gender-error"> <?php echo form_error('student_dob'); ?></div>
+        
+                    </div>
+                       </div>
+
+
+                      <div class="form-group">
+                    <label class="col-sm-3 control-label" for="gender"> Applicants' Email</label>
+                    <div class="col-sm-5">
+                        <input type="email" placeholder="Applicants' Email" id="student_email" value="<?php  echo $student['0']['student_email'];?>"
+                      name="student_email"  required="true" class="form-control">
+                    
+                      <div style="color:#DF0D8A" id="student_email-error"> <?php echo form_error('student_email'); ?></div>
+        
+                    </div>
+                       </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label" for="student_name">Applicants' Phone</label>
+                    <div class="col-sm-5">
+                      <input type="text" placeholder="Applicants' Phone" id="student_phone" value="<?php  echo $student['0']['student_phone'];?>"
+                      name="student_phone"  required="true" class="form-control">
+                             <div style="color:#DF0D8A" id="student_phone-error"> <?php echo form_error('student_phone'); ?></div>
+        
+                    </div>
+                       </div>
+                      <div class="form-group">
+                    <label class="col-sm-3 control-label" for="student_name">Applicants' Nationality</label>
+                    <div class="col-sm-5">
+                      <input type="text" placeholder="Applicants' Nationality" id="student_nationality" value="<?php  echo $student['0']['student_nationality'];?>"
+                      name="student_nationality"  required="true" class="form-control">
+                             <div style="color:#DF0D8A" id="student_nationality-error"> <?php echo form_error('student_nationality'); ?></div>
+        
+                    </div>
+                       </div>
+         
+                       <div class="form-group">
+                    <label class="col-sm-3 control-label" for="student_nextofkin">Applicants' Next of Kin</label>
+                    <div class="col-sm-5">
+                      <input type="text" placeholder="Applicants' Next of Kin " id="student_nextofkin" value="<?php  echo set_value('student_nextofkin'); ?>"
+                      name="student_nextofkin"  required="true" class="form-control">
+                             <div style="color:#DF0D8A" id="student_nextofkin-error"> <?php echo form_error('student_nextofkin'); ?></div>
+        
+                    </div>
+                       </div>
+                       <div class="form-group">
+                    <label class="col-sm-3 control-label" for="student_nextofkincontact">Next of Kin Contacts</label>
+                    <div class="col-sm-5">
+                      <input type="text" placeholder="Next of Kin Contacts" id="student_nextofkincontact"  value="<?php  echo set_value('student_nextofkincontact'); ?>"
+                      name="student_nextofkincontact"  required="true" class="form-control">
+                             <div style="color:#DF0D8A" id="student_nextofkincontact-error"> <?php echo form_error('student_nextofkincontact'); ?></div>
+        
+                    </div>
+                       </div>
+                                          <div class="form-group">
+                    <label class="col-sm-3 control-label" for="student_insitution">Applicants' Institution</label>
+                    <div class="col-sm-5">
+                      <input type="text" placeholder="Applicants' Institution" id="student_institution" value="<?php  echo $student['0']['student_institution'];?>"
+                      name="student_institution"  required="true" class="form-control">
+                             <div style="color:#DF0D8A" id="student_institution-error"> <?php echo form_error('student_institution'); ?></div>
+        
+                    </div>
+                       </div>
+
+               <div class="form-group">
+                
+                <div class="col-sm-10">
+                    
+                <h4  style="margin-left:50px;color:#7c3886;"class="widget-title"> Application Details </h4>
+
+                </div>
+                </div>
+
+                              <div class="form-group">
+                    <label class="col-sm-3 control-label" for="student_fieldofstudy">Applicants' Field of Study</label>
+                    <div class="col-sm-5">
+                      <input type="text" placeholder="Applicants' Field of Study" id="student_fieldofstudy"  value="<?php  echo set_value('student_fieldofstudy'); ?>"
+                      name="student_fieldofstudy"  required="true" class="form-control">
+                             <div style="color:#DF0D8A" id="student_fieldofstudy-error"> <?php echo form_error('student_fieldofstudy'); ?></div>
+        
+                    </div>
+                       </div>
+                                             <div class="form-group">
+                    <label class="col-sm-3 control-label" for="student_fieldofstudy">Proposed Research Title</label>
+                    <div class="col-sm-5">
+                      <input type="text" placeholder="Proposed Research Title" id="research_title"  value="<?php  echo set_value('research_title'); ?>"
+                      name="research_title"  required="true" class="form-control">
+                             <div style="color:#DF0D8A" id="research_title-error"> <?php echo form_error('research_title'); ?></div>
+        
+                    </div>
+                       </div>
+                                                          <div class="form-group">
+                    <label class="col-sm-3 control-label" for="sponsor">Sponsor</label>
+                    <div class="col-sm-5">
+                      <input type="text" placeholder="Sponsor" id="sponsor"  value="<?php  echo set_value('sponsor'); ?>"
+                      name="sponsor"   class="form-control">
+                             <div style="color:#DF0D8A" id="sponsor-error"> <?php echo form_error('sponsor'); ?></div>
+        
+                    </div>
+                       </div>
+                                                                             <div class="form-group">
+                    <label class="col-sm-3 control-label" for="sponsor">Sponsor Contact</label>
+                    <div class="col-sm-5">
+                      <input type="text" placeholder="Sponsor Contact" id="sponsor_contact"  value="<?php  echo set_value('sponsor_contact'); ?>"
+                      name="sponsor"  class="form-control">
+                             <div style="color:#DF0D8A" id="sponsor_contact-error"> <?php echo form_error('sponsor_contact'); ?></div>
+        
+                    </div>
+                       </div>
+                              <div class="form-group">
+                    <label class="col-sm-3 control-label" for="applicant_skills">Applicants' Skills</label>
+                    <div class="col-sm-5">
+            
+                      <textarea name="applicant_skills" id="applicant_skills"  class="form-control" required="true">
+                        <?php  echo set_value('applicant_skills'); ?>
+                      </textarea>
+
+                             <div style="color:#DF0D8A" id="applicant_skills-error"> <?php echo form_error('applicant_skills'); ?></div>
+        
+                    </div>
+                       </div>
+                     <div class="form-group">
+                <label class="col-sm-3 control-label">Fellowship Requirements</label>
+                <div class="col-sm-6">
+                  <div class="radio"> 
+                    <label> <input type="checkbox" class="icheck" name="applicant_requirements"  value="Accident Cover"> Personal Accident Cover</label> 
+                  </div>
+                  <div class="radio"> 
+                    <label> <input type="checkbox" name="applicant_requirements" class="icheck" value="Medical Insuarance"> Medical Insuarance</label> 
+                  </div>
+                </div>
+              </div>
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label" for="applicant_coverletter">Applicants' Cover Letter</label>
+                    <div class="col-sm-9">
                    
-                    <tr>
-                      <td style="width:20%;" class="category"><strong>CONTACT</strong></td>
-                      <td>
-                        <table class="no-border no-strip skills">
-                          <tbody class="no-border-x no-border-y">
-                               <tr><td style="width:20%;"><b>E-mail</b></td><td><span class = "detail"><?php echo $student[0]['student_email'] ;
-                              if($student[0]['student_email'] == null){echo "email" ;}?></span>
-                            <input type="text" class="detail hidden" name = "email" value ="<?php echo $student[0]['student_email'] ?>"></td></tr>
-                            <tr><td style="width:20%;"><b>Mobile</b></td><td><span class = "detail"><?php echo $student[0]['student_phone'] ;
-                              if($student[0]['student_phone'] == null){echo "phone_number" ;}?></span>
-                            <input type="text" class="detail hidden" name = "phone_number" value ="<?php echo $student[0]['student_phone'] ?>"></td></tr>
-                            <tr><td style="width:20%;"><b>Nationality</b></td><td><span class = "detail"><?php echo $student[0]['student_nationality'] ;
-                              if($student[0]['student_nationality'] == null){echo "Nationality" ;}?></span>
-                            <input type="text" class="detail hidden" name = "country" value ="<?php echo $student[0]['student_nationality'] ?>"></td></tr>
-                                                   
-                          </tbody>
-                        </table>
-                      </td>
-                    </tr>
-                      <tr>
-                      <td style="width:20%;" class="category"><strong>  EDUCATION</strong></td>
-                      <td>
-                        <table class="no-border no-strip skills">
-                          <tbody class="no-border-x no-border-y">
-                            <tr><td style="width:20%;"><b>Institution</b></td><td><span class = "detail"><?php echo $student[0]['student_institution'] ;
-                              if($student[0]['student_institution'] == null){echo "Institution" ;}?></span>
-                            <input type="text" class="detail hidden" name = "Institution" value ="<?php echo $student[0]['student_institution'] ?>"></td></tr>
-                                                  
-                          </tbody>
-                        </table>
-                      </td>
-                    </tr>
-          
-                                  
-                    <tr>
-                      <td class="category"><strong>Biography</strong></td>
-                      <td><span class = "detail"><?php echo $student[0]['student_biography'] ;
-                              if($student[0]['student_biography'] == null){echo "Biography" ;}?></span>
-                            <input class="detail hidden" name = "about" value ="<?php echo $student[0]['student_biography'] ?>" /></td>
-                        <td>
-                        
-                      </tr>
-                  
-
-
-                  </tbody>
-                </table>
-                        <button class="btn btn-default btn-flat btn-primary bg" type ="submit"><span>Save Changes</span></button>
-                      </form>
-              </div>
-
-              
-              <div id="settings" class="tab-pane cont">
-                <h3 class="widget-title">Change Account Password</h3>
-                <div class="row friends-list">
-                            <form role="form" class="form-horizontal">
-             
-                  <div class="form-group spacer2">
-                    <div class="col-sm-3"></div>
-                    <label class="col-sm-9" for="inputPassword3">Change Password</label>
-
-                  </div>
-                  <div class="form-group">
-                    <label class="col-sm-3 control-label" for="inputPassword3">Password</label>
-                    <div class="col-sm-9">
-                      <input type="password" placeholder="Password" id="inputPassword3" class="form-control">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label class="col-sm-3 control-label" for="inputPassword4">Repeat Password</label>
-                    <div class="col-sm-9">
-                      <input type="password" placeholder="Password" id="inputPassword4" class="form-control">
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="col-sm-offset-3 col-sm-9">
-                      <button class="btn btn-primary" type="submit">Update</button>
-                      <button class="btn btn-default">Reset</button>
-                    </div>
-                  </div>
-              </form>
-                </div>
-              </div>
-
-              <div id="avatar" class="tab-pane">
-                <div id= 'avatarmessage'></div>
-                <form role="form" class="form-horizontal" onsubmit="return changeavatars()" enctype ='multipart/form-data' id="avatars">
-                <div class="form-group">
-                  <label class="col-sm-3 control-label">User avatar</label>
-                  <div class="col-sm-6">
-                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                           <div class="fileinput fileinput-new" data-provides="fileinput">
                       <div>
-                        <span class="btn btn-primary btn-file"><span class="fileinput-new">Select image</span>
-                        <span class="fileinput-exists">Change</span><input type="file" name="useravatar"></span>
+                        <span class="btn btn-primary btn-file"><span class="fileinput-new">Select File</span>
+                        <span class="fileinput-exists">Change</span><input type="file" name="applicant_coverletter"></span>
                       </div>
                     </div>
+
+                <div  style="color:#DF0D8A"  id="applicant_coverletter-error"> <?php echo form_error('applicant_coverletter'); ?></div>
+                    </div>
                   </div>
+                       <div class="form-group">
+                    <label class="col-sm-3 control-label" for="position_enddate">Applicants' Curriculum Vitae</label>
+                    <div class="col-sm-9">
+                   
+                           <div class="fileinput fileinput-new" data-provides="fileinput">
+                      <div>
+                        <span class="btn btn-primary btn-file"><span class="fileinput-new">Select File</span>
+                        <span class="fileinput-exists">Change</span><input type="file" name="applicant_curriculumvitae"></span>
+                      </div>
+                    </div>
+
+                <div  style="color:#DF0D8A"  id="applicant_curriculumvitae-error"> <?php echo form_error('applicant_curriculumvitae'); ?></div>
+                    </div>
+                  </div>
+                 <div class="form-group">
+                    <label class="col-sm-3 control-label" for="introductionletter">Applicants' Introduction Letter</label>
+                    <div class="col-sm-9">
+                   
+                           <div class="fileinput fileinput-new" data-provides="fileinput">
+                      <div>
+                        <span class="btn btn-primary btn-file"><span class="fileinput-new">Select File</span>
+                        <span class="fileinput-exists">Change</span><input type="file" name="introductionletter"></span>
+                      </div>
+                    </div>
+
+                <div  style="color:#DF0D8A"  id="introductionletter-error"> <?php echo form_error('introductionletter'); ?></div>
+                    </div>
+                  </div>
+               
+                  <div class="form-group">
+                    <label class="col-sm-3 control-label" for="relevantinformation">Any Other Relavant Information</label>
+                    <div class="col-sm-5">
+                      <textarea  name ="relevantinformation" id="relevantinformation" class="form-control">
+                      <?php echo set_value('relevantinformation'); ?>
+                        
+                      </textarea> 
+                           <div style="color:#DF0D8A" id="relevantinformation-error"> <?php echo form_error('relevantinformation'); ?></div>
+            
+                    </div>
+                   
+                  </div>
+                  
+                  <div class="form-group">
+                    <div class="col-sm-offset-3 col-sm-9">
+                      <button class="btn btn-primary" type="submit">Apply Fellowship</button>
+                      
+                    </div>
+                  </div>
+         </form>
                 </div>
-         
-                        <button class="btn btn-default btn-flat btn-primary bg" type ="submit"><span>Save Changes</span></button>
-                    
-
-                </form>
-
-                <div class="md-overlay"></div>
               </div>
-            </div>
-          </div>    
-          
-          
-
-      </div>
-
-  </div>
-  </div>
-  	
-  </div> 
-  	
-  </div>
-  <!-- Scripts 
-  ==================================================================================-->
-    
-  	<script src="<?php echo base_url("/assets/js/jquery.js")?>"></script>
-       <script type="text/javascript">
-      
-     $("span.detail").click(function() 
-      {
-       edit($(this));
-       });
-    
-     
-     $("input.detail").change(function(){
-        change($(this));
-     }).blur(function() {
-      $(this).hide().siblings("span.detail").show();
-      });
-     
-    
-    
-     
-     
-     function edit($field){
-       $field.hide()
-       .siblings("input" ,"textarea").attr("class" ,"detail")
-       .show()
-       .val($field.text())
-       .attr("value" ,$("input").val())
-      
-
-       .focus();
-        
-      }
-    function change($input){
-      $input.hide();
-      
-      var $span = $input.siblings("span.detail");
-      if ($input.val())
-      {
-      $span.text($input.val());
-      }
-      $span.show();
-    }
-
-    function editprofile(){
-      $.ajax({
-      type: 'post',
-      url:'<?php echo base_url("/index.php/student/editstudent")?>',
-      data:$('#editprofile').serialize(),
-      success:
-        function(data){
-          if (data == '1'){
-             $('#message').attr("class" ,"alert alert-success alert-white-alt rounded");
-             $('#message').append("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>");
-             $('#message').append("<div class='icon'><i class='fa fa-check'></i></div>");
-             $('#message').append("<strong>Success!</strong> Changes has been saved successfully!"); 
-
-            
-          }
-          else{
-            
-             $('#message').attr("class" ,"alert alert-danger alert-white-alt rounded");
-             $('#message').append("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>");
-             $('#message').append("<div class='icon'><i class='fa fa-warning'></i></div>");
-             $('#message').append("<strong>Error!</strong> saving changes"); 
-          }
-        },
-      fail:
-        function(data){
-          console.log(data);
-        }
-
-    });
-    
-    return false;
-
-    }
-
-      function changeavatars(){
-
-    var form = document.getElementById('avatars');
-    var myfd = new FormData(form);
-
-      $.ajax({
-      
-      type: 'post',
-      url:'<?php echo base_url("/index.php/student/changeavatars")?>',
-      data:myfd,
-      processData: false,
-      contentType:false,
-      
-      success:
-        function(data){
-          if ( data != '0'){
-             $('#avatarmessage').attr("class" ,"alert alert-success alert-white-alt rounded");
-             $('#avatarmessage').append("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>");
-             $('#avatarmessage').append("<div class='icon'><i class='fa fa-check'></i></div>");
-             $('#avatarmessage').append("<strong>Success!</strong> Avatar changed"); 
-             
-          }
-          else{
-            
-             $('#avatarmessage').attr("class" ,"alert alert-danger alert-white-alt rounded");
-             $('#avatarmessage').append("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>");
-             $('#avatarmessage').append("<div class='icon'><i class='fa fa-warning'></i></div>");
-             $('#avatarmessage').append("<strong>Error!</strong> Avatar change failed"); 
-          }
-        },
-      fail:
-        function(data){
-          console.log(data);
-        }
-
-    });
-    
-    return false;
-
-    }
-     function addskill(){
-      $.ajax({
-      type: 'post',
-      url:'<?php echo base_url("/index.php/student/addskill")?>',
-      data:$('#addskill').serialize(),
-      success:
-        function(data){
-          if (data == '1'){
-             $('#skillmessage').attr("class" ,"alert alert-success alert-white-alt rounded");
-             $('#skillmessage').append("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>");
-             $('#skillmessage').append("<div class='icon'><i class='fa fa-check'></i></div>");
-             $('#skillmessage').append("<strong>Success!</strong> skill added"); 
-             $('#skills').append('<h4>'+$('#newskill').val()+'</h4>');
-             
-          }
-          else{
-            
-             $('#skillmessage').attr("class" ,"alert alert-danger alert-white-alt rounded");
-             $('#skillmessage').append("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>");
-             $('#skillmessage').append("<div class='icon'><i class='fa fa-warning'></i></div>");
-             $('#skillmessage').append("<strong>Error!</strong> failed to add skill"); 
-          }
-        },
-      fail:
-        function(data){
-          console.log(data);
-        }
-
-    });
-    
-    return false;
-
-    }
-
-
-</script>
-
-
-  </body>
+              </div>
+                </body>
 
 </html>

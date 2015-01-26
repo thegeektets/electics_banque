@@ -194,8 +194,99 @@ class Student extends CI_Controller {
 
   }
 
-  function internshipvacancies(){
+    function applyfellowship($vacancyid){
+  
+   $this->load->library('session');
+   $this->load->helper(array('form', 'url'));
+
+  if($this->session->userdata('logged_in') == "TRUE") {
+    $newdata = array(
+          
+                'vacancyid'  => $vacancyid
+            
+               );
+
+    $this->session->set_userdata($newdata);
+    $data['student'] = $this->student_model->get_student($this->session->userdata('username'));
+    $data['profile'] = $this->users_model->get_user($this->session->userdata('username'));
+    
+      if(count($this->student_model->check_fapplication($vacancyid))>0){
+
+      $data['success']= ("You have already made this application edit application to change your submissions") ;
+  
+    $this->load->view('includes/header');
+    $this->load->view('includes/menu' , $data);
+    $this->load->view('student/apply_fellowship',$data);
+    $this->load->view('includes/footer');
+     }
+     else
+     {
+
+     $this->load->library('form_validation');
+
+            $this->form_validation->set_rules('student_name', "Applicants' Name", 'required'); 
+            $this->form_validation->set_rules('student_gender', "Applicants' Gender", 'required'); 
+            $this->form_validation->set_rules('student_dob', "Applicants' DOB", 'required'); 
+            $this->form_validation->set_rules('student_email', "Applicants' Email", 'required|valid_email'); 
+            $this->form_validation->set_rules('student_phone', "Applicants' Phone", 'required'); 
+            $this->form_validation->set_rules('student_nationality', "Applicants' Nationality", 'required'); 
+            $this->form_validation->set_rules('student_nextofkin', "Applicants' Next of Kin", 'required'); 
+            $this->form_validation->set_rules('student_nextofkincontact', "Next of Kin Contacts", 'required'); 
+            $this->form_validation->set_rules('student_institution', "Applicants' Institution", 'required'); 
+            $this->form_validation->set_rules('student_fieldofstudy', "Applicants' Field of Study", 'required'); 
+            $this->form_validation->set_rules('applicant_skills', "Applicants' Skills", 'required'); 
+            $this->form_validation->set_rules('relevantinformation', "Relevant Information", 'required'); 
+            $this->form_validation->set_rules('research_title', "Proposed Research Title", 'required'); 
+           
+
+    if ($this->form_validation->run() == FALSE){
+
+    $data['success']= ("") ;
+ 
+    $this->load->view('includes/header');
+    $this->load->view('includes/menu' , $data);
+    $this->load->view('student/apply_fellowship',$data);
+    $this->load->view('includes/footer');
+    
+    }
+    else {
+     $data['success']= ("Application has been sent to CDU for processing you will be notified on the progress") ;
+     $this->student_model->apply_fellowship($this->session->userdata('vacancyid'));
+    
+  
+    $this->load->view('includes/header');
+    $this->load->view('includes/menu' , $data);
+    $this->load->view('student/apply_fellowship',$data);
+    $this->load->view('includes/footer');
+    
+    }
+
+  }
+  
+  }
+  else{
+
+      $data['success']=("Login Required to Apply Fellowship") ;
+      $this->load->helper(array('form', 'url'));
+      $this->load->library('form_validation');
+      $this->form_validation->set_rules('username', 'Username ', 'required'); 
+      $this->form_validation->set_rules('password', 'Password  ', 'required'); 
+                      
+
+    if ($this->form_validation->run() == FALSE){
+ 
+       $this->load->view('includes/header');
+       $this->load->view('login',$data);
+       $this->load->view('includes/footer');   
+     
+    }
         
+  }
+
+  }
+
+  function internshipvacancies(){
+        $this->load->library('session');
         $data['profile'] = $this->users_model->get_user($this->session->userdata('username'));
         $data['ivacancies'] = $this->admin_model->load_ivacancies();
         $this->load->view('includes/header');
@@ -208,7 +299,7 @@ class Student extends CI_Controller {
   }
 
   function fellowshipvacancies(){
-
+      $this->load->library('session');
       $data['profile'] = $this->users_model->get_user($this->session->userdata('username'));
       $data['fvacancies'] = $this->admin_model->load_fvacancies();
       $this->load->view('includes/header');

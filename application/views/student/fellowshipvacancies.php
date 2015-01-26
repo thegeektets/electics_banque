@@ -28,9 +28,9 @@
               </li>
               <li><a href="#"><i class="fa fa-list-alt"></i><span>Vacancies</span></a>
                 <ul class="sub-menu">
-                  <li class="active"><a href="<?php echo base_url('index.php/student/internshipvacancies')?>">Internship Vacancies</a></li>
-                  <li><a href="<?php echo base_url('index.php/student/fellowshipvacancies')?>">Fellowship Vacancies</a></li>
-                  </ul>
+                       <li ><a href="<?php echo base_url('index.php/student/internshipvacancies')?>">Internship Vacancies</a></li>
+                  <li class="active"><a href="<?php echo base_url('index.php/student/fellowshipvacancies')?>">Fellowship Vacancies</a></li>
+                </ul>
               </li>
               <li><a href="#"><i class="fa fa-table"></i><span>Projects</span></a>
                 <ul class="sub-menu">
@@ -62,7 +62,7 @@
         <div class="col-md-12">
           <div class="block-flat">
             <div class="header">              
-              <h3 style="font-weight:300;color:#7C3886">INTERNSHIP VACANCIES </h3>
+              <h3 style="font-weight:300;color:#7C3886">FELLOWSHIP VACANCIES </h3>
             </div>
             <div class="content">
               <div class="table-responsive">
@@ -82,17 +82,17 @@
                   <tbody>
                   <?php 
                   
-                  for ($i=0;$i<count($ivacancies);$i++){
+                  for ($i=0;$i<count($fvacancies);$i++){
                    ?>
                                       <tr class="gradeX">
-                      <td><?php echo $ivacancies[$i]['vacancy_title']  ;?></td>
-                      <td><?php echo $ivacancies[$i]['vacancy_description'] ;?></td>
-                      <td><?php echo $ivacancies[$i]['position_startdate'] ;?></td>
-                      <td><?php echo $ivacancies[$i]['position_enddate'] ;?></td>
-                      <td><?php echo $ivacancies[$i]['application_deadline'] ;?></td>
+                      <td><?php echo $fvacancies[$i]['vacancy_title']  ;?></td>
+                      <td><?php echo $fvacancies[$i]['vacancy_description'] ;?></td>
+                      <td><?php echo $fvacancies[$i]['position_startdate'] ;?></td>
+                      <td><?php echo $fvacancies[$i]['position_enddate'] ;?></td>
+                      <td><?php echo $fvacancies[$i]['application_deadline'] ;?></td>
                       <td class="center">
                         
-                     <a class="btn btn-default btn-xs" href="<?php echo base_url('index.php/student/applyinternship/').'/'.$ivacancies[$i]['vacancy_id'];?>" id="Apply Internship" data-original-title="Apply Internship" data-toggle="tooltip"><i style="color:#BAD532;" class="fa fa-file"></i></a> 
+                     <a class="btn btn-default btn-xs" href="<?php echo base_url('index.php/student/applyfellowship/').'/'.$fvacancies[$i]['vacancy_id'];?>" id="Apply Fellowship" data-original-title="Apply Fellowship" data-toggle="tooltip"><i style="color:#BAD532;" class="fa fa-file"></i></a> 
             
                       </td>
                     </tr>

@@ -27,10 +27,10 @@
                  </ul>
               </li>
               <li><a href="#"><i class="fa fa-list-alt"></i><span>Vacancies</span></a>
-                <ul class="sub-menu">
-                  <li class="active"><a href="form-elements.html">Internship Vacancies</a></li>
-                  <li><a href="form-validation.html">Fellowship Vacancies</a></li>
-                  </ul>
+                      <ul class="sub-menu">
+                               <li ><a href="<?php echo base_url('index.php/student/internshipvacancies')?>">Internship Vacancies</a></li>
+                  <li><a href="<?php echo base_url('index.php/student/fellowshipvacancies')?>">Fellowship Vacancies</a></li>
+             </ul>
               </li>
               <li><a href="#"><i class="fa fa-table"></i><span>Projects</span></a>
                 <ul class="sub-menu">
