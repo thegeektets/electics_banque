@@ -8,7 +8,7 @@
 		<h2 class="description text-center">Sorry, but this page doesn't exists!</h2>
 		<h3 class="text-center">Would you like to go <a style="color:#BAD532;" href="<?php echo base_url();?>">home</a>?</h3>
 	</div>
-	<div class="text-center copy">&copy; <?php echo date('Y'); ?> <a href="<?php echo base_url(); ?>">ICRAF Intern Management & Capacity Building Information System </a> </div>
+	<div class="text-center copy">&copy; <?php echo date('Y'); ?> <a href="<?php echo base_url(); ?>">	Banque De Kigali Information System </a> </div>
 
 	
 </div>

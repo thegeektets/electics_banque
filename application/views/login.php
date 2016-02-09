@@ -10,7 +10,7 @@
 	<div class="middle-login">
 		<div class="block-flat">
 			<div class="header">							
-			<h4 style="color:#fff;font-weight: 300;" class="text-center"><img class="logo-img" src="<?php echo base_url('/assets/images/logo.jpg')?>" width="50px" alt=""/>User Login</h4> 	</div>
+			<h4 style="color:#fff;font-weight: 300;" class="text-center">User Login</h4> 	</div>
 			<div>
 			     <?php if(strlen($success)>0){
                 ?>
@@ -63,7 +63,7 @@
 				</form>
 			</div>
 		</div>
-       	 <div id="copy"><small ><a  style="color:#fff" href="<?php echo base_url(); ?>">ICRAF Intern Management & Capacity Building Information System </a> </small> &nbsp; &copy; <?php echo date('Y'); ?> </div>
+       	 <div id="copy"><small ><a  style="color:#fff" href="<?php echo base_url(); ?>"> Banque De Kigali</a> </small> &nbsp; &copy; <?php echo date('Y'); ?> </div>
 		
 	</div> 
 

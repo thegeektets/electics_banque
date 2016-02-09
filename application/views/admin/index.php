@@ -15,75 +15,19 @@
                 <img src="<?php echo base_url('/assets/images/state_online.png')?>" alt="Status" /> <span>Online</span>
               </div>
             </div>
-            <ul class="cl-vnavigation">
+               <ul class="cl-vnavigation">
               <li><a href="#"><i class="fa fa-home"></i><span>Profile</span></a>
                 <ul class="sub-menu">
                    <li class="active"><a href="<?php echo base_url('index.php/admin') ?>">My Profile</a></li>
                 </ul>
               </li>
-              <li><a href="#"><i class="fa fa-smile-o"></i><span>Supervisors</span></a>
-                <ul class="sub-menu">
-                  <li><a href="<?php echo base_url('index.php/admin/add_supervisor') ?>">Add New</a></li>
-                  <li><a href="<?php echo base_url('index.php/admin/edit_supervisor') ?>">Edit Existing</a></li>
-                  </ul>
-              </li>
-     
-              <li><a href="#"><i class="fa fa-list-alt"></i><span>Requests</span></a>
-                <ul class="sub-menu">
-                  <li><a href="<?php echo base_url('index.php/admin/pending_internrequests') ?>">Pending Intern Requests</a></li>
-                  <li><a href="<?php echo base_url('index.php/admin/pending_fellowrequests') ?>">Pending Fellow Requests</a></li>
-                  <li><a href="<?php echo base_url('index.php/admin/processed_internrequests') ?>">Processed Intern Requests</a></li>
-                  <li><a href="<?php echo base_url('index.php/admin/processed_fellowrequests') ?>">Processed Fellow Requests</a></li>
-                </ul>
-              </li>
-
-              <li><a href="#"><i class="fa fa-table"></i><span>Applications</span></a>
-                <ul class="sub-menu">
-                  <li><a href="form-elements.html">Internship Applications</a></li>
-                  <li><a href="form-validation.html">Fellowship Applications</a></li>
-                   </ul>
-              </li>
-              <li><a href="#"><i class="fa fa-envelope nav-icon"></i><span>Vacancies</span></a>
              
-               <ul class="sub-menu">
-                  <li><a href="<?php echo base_url('index.php/admin/internvacancyactions') ?>">New Internship Vacancies</a></li>
-                  <li><a href="email-read.html">Edit Internship Vacancies</a></li>
-                  <li><a href="<?php echo base_url('index.php/admin/fellowvacancyactions') ?>">New Fellowship Vacancies</a></li>
-                  <li><a href="email-read.html">Edit Fellowship Vacancies</a></li>
-                  </ul>
+              <li><a href="<?php echo base_url('index.php/admin/accounts_opening'); ?>"><i class="fa fa-table"></i><span>Accounts Opening</span></a>
               </li>
-
-              <li><a href="#"><i class="fa fa-folder"></i><span>Contracts</span></a>
-                <ul class="sub-menu">
-                  <li><a href="email-inbox.html">New Contract</a></li>
-                  <li><a href="email-read.html">Edit Contracts</a></li>
-                  <li><a href="email-inbox.html">Renew Contracts</a></li>
-                  </ul>
+             <li><a href="<?php echo base_url('index.php/admin/customer_reports'); ?>"><i class="fa  fa-bar-chart-o"></i><span>Customer Reports</span></a>
               </li>
-              <li><a href="#"><i class="fa  fa-bar-chart-o"></i><span>Reports</span></a>
-                <ul class="sub-menu">
-                  
-                  <li><a href="charts.html"><span>Applications</span></a></li>
-                  <li><a href="pages-blank.html">Contracts</a></li>
-                  <li><a href="pages-blank-header.html">Requests</a></li>
-                  <li><a href="pages-blank-aside.html">Interns Demographics</a></li>
-                  <li><a href="pages-login.html">Fellow Demographics</a></li>
-                  </ul>
-              </li>
-               <li><a href="#"><i class="fa fa-table"></i><span>Notifications</span></a>
-                <ul class="sub-menu">
-                  <li><a href="tables-general.html">Add</a></li>
-                  <li><a href="tables-datatables.html">Edit</a></li>
-                </ul>
-              </li>              
-             
-               <li><a href="#"><i class="fa fa-hdd-o"></i><span>Alumni Data</span></a>
-                <ul class="sub-menu">
-                  <li><a href="tables-general.html">Interns </a></li>
-                  <li><a href="tables-datatables.html">Fellows</a></li>
-                </ul>
-              </li>
-            </ul>
+          
+              </ul>
           </div>
         </div>
         <div class="text-right collapse-button" style="padding:7px 9px;">

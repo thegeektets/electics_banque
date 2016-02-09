@@ -8,7 +8,7 @@
 	<div class="middle-sign-up">
 		<div class="block-flat">
 			<div class="header">							
-				<h4 class="text-center" style="color:#fff"><img class="logo-img" src="<?php echo base_url('/assets/images/logo.jpg')?>" alt=""/> Register User</h4>
+				<h4 class="text-center" style="color:#fff">Register User</h4>
 
 					
 			</div>
@@ -59,11 +59,10 @@
 			  </form>
 			</div>
 		</div>
-		<div id="copy"><small><a  style = "color:#fff" href="<?php echo  base_url('') ;?>"> ICRAF Intern Management and Capacity Building Information System</a></small> &nbsp; &copy; <?php echo date('Y'); ?> </div>
-		
+	<div id="copy"><small ><a  style="color:#fff" href="<?php echo base_url(); ?>"> Banque De Kigali Information System </a> </small> &nbsp; &copy; <?php echo date('Y'); ?> </div>
+			
 	</div> 
 	
 </div>
-
 
 

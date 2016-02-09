@@ -41,6 +41,6 @@ $this->load->helper('url');
    
 
 
-<title>Intern Management and Capacity Building Information System</title>
+<title>Banque De Kigali Information System</title>
   
 </head>
